@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ScheduledEvents.FunctionApp.Tests
+namespace EventScheduler.FunctionApp.Tests
 {
     [TestClass]
     public class UnitTest1

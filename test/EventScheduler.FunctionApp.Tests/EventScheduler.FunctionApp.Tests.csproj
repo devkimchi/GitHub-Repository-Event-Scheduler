@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ScheduledEvents.FunctionApp\ScheduledEvents.FunctionApp.csproj" />
+    <ProjectReference Include="..\..\src\EventScheduler.FunctionApp\EventScheduler.FunctionApp.csproj" />
   </ItemGroup>
 
 </Project>

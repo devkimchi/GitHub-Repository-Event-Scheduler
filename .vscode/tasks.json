@@ -44,7 +44,7 @@
         "publish",
         "--configuration",
         "Release",
-        "${workspaceFolder}/src/ScheduledEvents.FunctionApp/ScheduledEvents.FunctionApp.csproj",
+        "${workspaceFolder}/src/EventScheduler.FunctionApp/EventScheduler.FunctionApp.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -57,7 +57,7 @@
       "args": [
         "watch",
         "run",
-        "${workspaceFolder}/test/ScheduledEvents.FunctionApp.Tests/ScheduledEvents.FunctionApp.Tests.csproj",
+        "${workspaceFolder}/test/EventScheduler.FunctionApp.Tests/EventScheduler.FunctionApp.Tests.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -67,7 +67,7 @@
       "type": "func",
       "dependsOn": "build",
       "options": {
-        "cwd": "${workspaceFolder}/src/ScheduledEvents.FunctionApp/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/src/EventScheduler.FunctionApp/bin/Debug/netcoreapp3.1"
       },
       "command": "host start",
       "isBackground": true,
