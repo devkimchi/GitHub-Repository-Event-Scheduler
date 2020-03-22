@@ -45,4 +45,7 @@ jobs:
       shell: pwsh
       run: |
         dir
-        dotnet test ./test/**/*.csproj
+        cd test
+        dir
+        cd EventScheduler.FunctionApp.Tests
+        dotnet test .
