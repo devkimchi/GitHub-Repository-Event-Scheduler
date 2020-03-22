@@ -32,21 +32,14 @@ jobs:
     - name: Restore NuGet packages
       shell: pwsh
       run: |
-        dir
-        cd $GITHUB_WORKSPACE
-        dir
         dotnet restore .
 
     - name: Build Function app
       shell: pwsh
       run: |
-        pushd '$GITHUB_WORKSPACE'
         dotnet build . -c Release -o ./output
-        popd
 
     - name: Test Function app
       shell: pwsh
       run: |
-        pushd '$GITHUB_WORKSPACE'
         dotnet test test/**/*.csproj
-        popd
