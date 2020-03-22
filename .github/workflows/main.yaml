@@ -32,14 +32,17 @@ jobs:
     - name: Restore NuGet packages
       shell: pwsh
       run: |
+        dir
         dotnet restore .
 
     - name: Build Function app
       shell: pwsh
       run: |
+        dir
         dotnet build . -c Release -o ./output
 
     - name: Test Function app
       shell: pwsh
       run: |
-        dotnet test test/**/*.csproj
+        dir
+        dotnet test ./test/**/*.csproj
