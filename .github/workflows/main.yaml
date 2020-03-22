@@ -10,22 +10,15 @@ on:
     branches:
     - dev
 
-env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
-
 jobs:
   build_test_run:
-    name: Build, test and run the GitHub Action
+    name: Build and test
     strategy:
       matrix:
         os: [ 'windows-latest' ]
         dotnet: [ '3.1.100' ]
 
     runs-on: ${{ matrix.os }}
-
-    env:
-      USER_AGENT: GitHubActionsPrMerge
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - name: Checkout the repository
@@ -39,20 +32,20 @@ jobs:
     - name: Restore NuGet packages
       shell: pwsh
       run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        pushd '${{ $GITHUB_WORKSPACE }}'
         dotnet restore .
         popd
 
     - name: Build Function app
       shell: pwsh
       run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        pushd '${{ $GITHUB_WORKSPACE }}'
         dotnet build . -c Release -o ./output
         popd
 
     - name: Test Function app
       shell: pwsh
       run: |
-        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        pushd '${{ $GITHUB_WORKSPACE }}'
         dotnet test test/**/*.csproj
         popd
