@@ -1,0 +1,50 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+    - master
+    - dev
+    - feature/*
+  pull_request:
+    branches:
+    - dev
+
+jobs:
+  build_test_run:
+    name: Build and test
+    strategy:
+      matrix:
+        os: [ 'windows-latest' ]
+        dotnet: [ '3.1.100' ]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v1
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+
+    - name: Restore NuGet packages
+      shell: pwsh
+      run: |
+        dir
+        dotnet restore .
+
+    - name: Build Function app
+      shell: pwsh
+      run: |
+        dir
+        dotnet build . -c Release -o ./output
+        dir
+
+    - name: Test Function app
+      shell: pwsh
+      run: |
+        dir
+        cd test/EventScheduler.FunctionApp.Tests
+        dotnet test .
