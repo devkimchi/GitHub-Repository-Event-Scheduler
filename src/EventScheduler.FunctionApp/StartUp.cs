@@ -4,6 +4,7 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 [assembly: FunctionsStartup(typeof(EventScheduler.FunctionApp.StartUp))]
@@ -34,6 +35,7 @@ namespace EventScheduler.FunctionApp
             {
                 Formatting = Formatting.Indented,
                 ContractResolver = new DefaultContractResolver() { NamingStrategy = new CamelCaseNamingStrategy() },
+                Converters = { new StringEnumConverter() },
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
             };
