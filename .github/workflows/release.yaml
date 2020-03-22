@@ -27,27 +27,26 @@ jobs:
     - name: Restore NuGet packages
       shell: pwsh
       run: |
-        pushd '${{ $GITHUB_WORKSPACE }}'
+        dir
         dotnet restore .
-        popd
 
     - name: Build Function app
       shell: pwsh
       run: |
-        pushd '$GITHUB_WORKSPACE'
+        dir
         dotnet build . -c Release -o ./output
-        popd
+        dir
 
     - name: Test Function app
       shell: pwsh
       run: |
-        pushd '$GITHUB_WORKSPACE'
-        dotnet test test/**/*.csproj
-        popd
+        dir
+        cd test/EventScheduler.FunctionApp.Tests
+        dotnet test .
 
     - name: Deploy Function app
       uses: Azure/functions-action@v1
       with:
         app-name: ${{ secrets.AZURE_FUNCTIONAPP_NAME }}
-        package: '$GITHUB_WORKSPACE/output'
+        package: './output'
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}

@@ -40,12 +40,11 @@ jobs:
       run: |
         dir
         dotnet build . -c Release -o ./output
+        dir
 
     - name: Test Function app
       shell: pwsh
       run: |
         dir
-        cd test
-        dir
-        cd EventScheduler.FunctionApp.Tests
+        cd test/EventScheduler.FunctionApp.Tests
         dotnet test .
