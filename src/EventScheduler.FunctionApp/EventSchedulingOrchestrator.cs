@@ -55,7 +55,7 @@ namespace EventScheduler.FunctionApp
 
             await context.CreateTimer(scheduled, CancellationToken.None);
 
-            var output = await context.CallActivityAsync<object>("CallRepositoryDispatchEvent", input);
+            var output = await context.CallActivityAsync<object>("CallMergePrRepositoryDispatchEvent", input);
 
             return output;
         }
