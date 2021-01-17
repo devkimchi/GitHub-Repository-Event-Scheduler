@@ -17,7 +17,7 @@ namespace EventScheduler.FunctionApp
     /// </summary>
     public class EventSchedulingOrchestrator
     {
-        private static TimeSpan threshold = new TimeSpan(7, 0, 0, 0);
+        private static TimeSpan threshold = new TimeSpan(28, 0, 0, 0);
 
         /// <summary>
         /// Invokes the orchestrator for event scheduling on GitHub.
